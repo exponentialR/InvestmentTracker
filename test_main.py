@@ -3,9 +3,11 @@ from tkinter import ttk, messagebox, font
 import sqlite3
 from create_investment_data import create_investment_table
 
+
 def expenditure_type(expenditure, investment_type):
-    expenditure = {f'capital_fish_farm':['Land', 'Construction', 'Power', 'Fingerlings', 'Manpower', 'Miscellenous'],
+    expenditure = {f'capital_fish_farm': ['Land', 'Construction', 'Power', 'Fingerlings', 'Manpower', 'Miscellenous'],
                    'operational_fish_farm': ['Power', 'Fish Feed', 'Salary', 'Fish Treatment', 'Maintenance', 'Others']}
+
 
 class InvestmentTrackerApp:
     def __init__(self, root):
@@ -24,7 +26,6 @@ class InvestmentTrackerApp:
         self.secondary_frame = tk.Frame(self.root, bg='lightblue')
         self.secondary_frame.grid(row=1, column=0, columnspan=2)
 
-
         user = self.check_user_data()
 
         if user:
@@ -42,6 +43,7 @@ class InvestmentTrackerApp:
                   (investment_type, investment_subtype, investment_name, unique_name))
         conn.commit()
         conn.close()
+
     def check_user_data(self):
         conn = sqlite3.connect('user_data.db')
         c = conn.cursor()
@@ -87,10 +89,11 @@ class InvestmentTrackerApp:
         self.welcome_frame.grid_forget() if 'welcome_frame' in self.__dict__ else None
 
         self.main_frame.grid(row=0, column=0)
-        tk.Label(self.main_frame, text=f"Hey {name}! \n Welcome to your Personal Investment Tracker", font=self.heading_font,
+        tk.Label(self.main_frame, text=f"Hey {name}! \n Welcome to your Personal Investment Tracker",
+                 font=self.heading_font,
                  bg='lightblue').grid(row=0, column=0, columnspan=3)
 
-        tk.Label(self.main_frame, text=f'What would you like to do today?',font=self.welcome_label,
+        tk.Label(self.main_frame, text=f'What would you like to do today?', font=self.welcome_label,
                  bg='lightblue').grid(row=1, column=0)
 
         tk.Button(self.main_frame, text='Track Investment', command=self.track_investment, font=self.label_font,
@@ -118,33 +121,33 @@ class InvestmentTrackerApp:
             },
             "Agriculture": {
                 'Fish Farm': {
-                'capital': ['Land', 'Construction', 'Power', 'Fingerlings'],
-                'operational': ['Power', 'Fish_Feed', 'Salary', 'Fish_Treatment', 'Maintenance']
-            },
-            'Cereal Farm': {
-                'capital': ['Land', 'Machinery', 'Initial_Seeds'],
-                'operational': ['Fertilizers', 'Pesticides', 'Labour', 'Water']
-            },
-            'Fruit Farm': {
-                'capital': ['Land', 'Initial_Plants', 'Equipment'],
-                'operational': ['Fertilizers', 'Pesticides', 'Labour', 'Water']
-            },
-            'Dairy Farm': {
-                'capital': ['Land', 'Barn_Construction', 'Initial_Cattle_Purchase'],
-                'operational': ['Feed', 'Veterinary_Care', 'Labour', 'Machinery_Maintenance']
-            },
-            'Poultry Farm': {
-                'capital': ['Land', 'Coop_Construction', 'Initial_Chick_Purchase'],
-                'operational': ['Feed', 'Veterinary_Care', 'Labour', 'Heating']
-            },
-            'Livestock Farm': {
-                'capital': ['Land', 'Fencing', 'Initial_Livestock_Purchase'],
-                'operational': ['Feed', 'Veterinary_Care', 'Labour']
-            },
-            'Other': {
-                'capital': ['Land', 'Equipment'],
-                'operational': ['Maintenance', 'Labour', 'Other_Costs']
-            }
+                    'capital': ['Land', 'Construction', 'Power', 'Fingerlings'],
+                    'operational': ['Power', 'Fish_Feed', 'Salary', 'Fish_Treatment', 'Maintenance']
+                },
+                'Cereal Farm': {
+                    'capital': ['Land', 'Machinery', 'Initial_Seeds'],
+                    'operational': ['Fertilizers', 'Pesticides', 'Labour', 'Water']
+                },
+                'Fruit Farm': {
+                    'capital': ['Land', 'Initial_Plants', 'Equipment'],
+                    'operational': ['Fertilizers', 'Pesticides', 'Labour', 'Water']
+                },
+                'Dairy Farm': {
+                    'capital': ['Land', 'Barn_Construction', 'Initial_Cattle_Purchase'],
+                    'operational': ['Feed', 'Veterinary_Care', 'Labour', 'Machinery_Maintenance']
+                },
+                'Poultry Farm': {
+                    'capital': ['Land', 'Coop_Construction', 'Initial_Chick_Purchase'],
+                    'operational': ['Feed', 'Veterinary_Care', 'Labour', 'Heating']
+                },
+                'Livestock Farm': {
+                    'capital': ['Land', 'Fencing', 'Initial_Livestock_Purchase'],
+                    'operational': ['Feed', 'Veterinary_Care', 'Labour']
+                },
+                'Other': {
+                    'capital': ['Land', 'Equipment'],
+                    'operational': ['Maintenance', 'Labour', 'Other_Costs']
+                }
             },
             "Stocks": {
                 'capital': ['Stock_ID', 'Ticker', 'Purchase_Date', 'Purchase_Price', 'Number_of_Shares'],
