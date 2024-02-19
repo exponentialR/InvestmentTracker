@@ -25,7 +25,6 @@ for table in tables:
     table_content = cursor.fetchall()
     print(f'Content: {table_content}')
 
-    # Check if 'Name' exists in the column names
     if 'Name' in columns:
         # Check if 'John Doe' exists in the first row
         if table_content and table_content[0][columns.index('Name')] != 'John Doe':
